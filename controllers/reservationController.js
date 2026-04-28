@@ -12,9 +12,12 @@ const getAllReservations = async (req, res) => {
 const getReservationsByCatway = async (req, res) => {
   try {
     const reservations =
-      await reservationService.getReservationsByCatway(req.params.id);
+      await reservationService.getReservationsByCatway(Number(req.params.id));
 
     res.json(reservations);
+    if (!reservations.length) {
+        return res.status(404).json({ message: "No reservations found" });
+        }
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -37,9 +40,12 @@ const getReservationById = async (req, res) => {
 
 const createReservation = async (req, res) => {
   try {
-    const newReservation = await reservationService.createReservation(
-      req.body
-    );
+    const reservationData = {
+      ...req.body,
+      catwayNumber: Number(req.params.id)
+    };
+
+    const newReservation = await reservationService.createReservation(reservationData);
 
     res.status(201).json(newReservation);
   } catch (error) {
