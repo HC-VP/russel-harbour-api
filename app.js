@@ -6,6 +6,8 @@ const catwayRoutes = require("./routes/catwayRoutes");
 const userRoutes = require("./routes/userRoutes");
 const reservationRoutes = require("./routes/reservationRoutes");
 
+const authRoutes = require("./routes/authRoutes");
+
 // middlewares globaux
 app.use(express.json());
 
@@ -25,6 +27,8 @@ app.use("/catways", catwayRoutes);
 app.use("/users", userRoutes);
 app.use("/reservations", reservationRoutes);
 
+//route pour auth
+app.use("/auth", authRoutes);
 
 
 
