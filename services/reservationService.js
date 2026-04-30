@@ -28,18 +28,18 @@ const createReservation = async (data) => {
     catwayNumber,
     clientName,
     boatName,
-    startDate,
-    endDate,
+    checkIn,
+    checkOut,
   } = data;
 
-  if (!catwayNumber || !clientName || !boatName || !startDate || !endDate) {
+  if (!catwayNumber || !clientName || !boatName || !checkIn || !checkOut) {
     throw new Error("Tous les champs obligatoires doivent être renseignés.");
   }
 
   const catwayNum = toNumber(catwayNumber);
 
-  const start = new Date(startDate);
-  const end = new Date(endDate);
+  const start = new Date(checkIn);
+  const end = new Date(checkOut);
   const now = new Date();
 
   if (start < now) {
@@ -58,8 +58,8 @@ const createReservation = async (data) => {
 
   const existingReservations = await Reservation.findOne({
     catwayNumber: catwayNum,
-    startDate: { $lt: end },
-    endDate: { $gt: start },
+    checkIn: { $lt: end },
+    checkOut: { $gt: start },
   });
 
   if (existingReservations) {
@@ -70,8 +70,8 @@ const createReservation = async (data) => {
     catwayNumber: catwayNum,
     clientName,
     boatName,
-    startDate: start,
-    endDate: end,
+    checkIn: start,
+    checkOut: end,
   });
 };
 

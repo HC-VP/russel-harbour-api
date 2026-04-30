@@ -19,9 +19,9 @@ const getCatwayById = async (id) => {
 };
 
 const createCatway = async (data) => {
-  const { catwayNumber, catwayType, catwayState } = data;
+  const { catwayNumber, type, catwayState } = data;
 
-  if (!catwayNumber || !catwayType || !catwayState) {
+  if (!catwayNumber || !type || !catwayState) {
     throw new Error("Tous les champs sont obligatoires.");
   }
 
