@@ -1,4 +1,5 @@
 const Catway = require("../models/Catway");
+const Reservation = require("../models/Reservation");
 
 // helper
 const toNumber = (id) => {
@@ -18,23 +19,71 @@ const getCatwayById = async (id) => {
 };
 
 const createCatway = async (data) => {
-  return await Catway.create(data);
+  const { catwayNumber, catwayType, catwayState } = data;
+
+  if (!catwayNumber || !catwayType || !catwayState) {
+    throw new Error("Tous les champs sont obligatoires.");
+  }
+
+  const catwayNum = toNumber(catwayNumber);
+
+  const existing = await Catway.findOne({ catwayNumber: catwayNum });
+
+  if (existing) {
+    throw new Error("Un catway avec ce numéro existe déjà.");
+  }
+
+  return await Catway.create({
+    ...data,
+    catwayNumber: catwayNum,
+  });
 };
 
 const updateCatway = async (id, data) => {
-  return await Catway.findOneAndUpdate(
-    { catwayNumber: toNumber(id) },
-    data,
-    {
-      new: true,
-      runValidators: true,
+  const catwayNum = toNumber(id);
+
+  const catway = await Catway.findOne({ catwayNumber: catwayNum });
+
+  if (!catway) {
+    throw new Error("Catway introuvable");
+  }
+
+  if (data.catwayNumber && data.catwayNumber !== catwayNum) {
+    const newNum = toNumber(data.catwayNumber);
+
+    const existing = await Catway.findOne({ catwayNumber: newNum });
+
+    if (existing) {
+      throw new Error("Un catway avec ce numéro existe déjà.");
     }
+
+    data.catwayNumber = newNum;
+  }
+
+  return await Catway.findOneAndUpdate(
+    { catwayNumber: catwayNum },
+    data,
+    { new: true, runValidators: true }
   );
 };
 
 const patchCatwayState = async (id, catwayState) => {
+  const catwayNum = toNumber(id);
+
+  const catway = await Catway.findOne({ catwayNumber: catwayNum });
+
+  if (!catway) {
+    throw new Error("Catway introuvable");
+  }
+
+  const allowedStates = ["available", "occupied", "maintenance"];
+
+  if (!allowedStates.includes(catwayState)) {
+    throw new Error("État de catway invalide");
+  }
+
   return await Catway.findOneAndUpdate(
-    { catwayNumber: toNumber(id) },
+    { catwayNumber: catwayNum },
     { catwayState },
     {
       new: true,
@@ -44,9 +93,21 @@ const patchCatwayState = async (id, catwayState) => {
 };
 
 const deleteCatway = async (id) => {
-  return await Catway.findOneAndDelete({
-    catwayNumber: toNumber(id),
-  });
+  const catwayNum = toNumber(id);
+
+  const catway = await Catway.findOne({ catwayNumber: catwayNum });
+
+  if (!catway) {
+    throw new Error("Catway introuvable");
+  }
+
+  const reservations = await Reservation.find({ catwayNumber: catwayNum });
+
+  if (reservations.length > 0) {
+    throw new Error("Impossible de supprimer un catway ayant des réservations.");
+  }
+
+  return await Catway.findOneAndDelete({ catwayNumber: catwayNum });
 };
 
 module.exports = {
