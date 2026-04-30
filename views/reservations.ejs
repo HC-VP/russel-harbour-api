@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Réservations</title>
+</head>
+<body>
+
+  <h1>Liste des réservations</h1>
+
+  <a href="/dashboard">Retour</a>
+
+  <ul>
+    <% reservations.forEach(reservation => { %>
+      <li>
+        Catway n° <%= reservation.catwayNumber %> -
+        Client: <%= reservation.clientName %> -
+        Bateau: <%= reservation.boatName %> -
+        Du <%= reservation.checkIn.toLocaleDateString("fr-FR") %>
+        au <%= reservation.checkOut.toLocaleDateString("fr-FR") %>
+      </li>
+    <% }) %>
+  </ul>
+
+</body>
+</html>

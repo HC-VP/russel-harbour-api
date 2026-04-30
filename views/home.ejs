@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Capitainerie Russell</title>
+</head>
+<body>
+
+  <h1>Application de gestion de capitainerie</h1>
+
+  <p>
+    Cette application permet de gérer les catways, les réservations
+    et les utilisateurs de la capitainerie.
+  </p>
+
+  <h2>Connexion</h2>
+
+  <form method="POST" action="/login">
+    <div>
+      <label>Email</label>
+      <input type="email" name="email" required>
+    </div>
+
+    <div>
+      <label>Mot de passe</label>
+      <input type="password" name="password" required>
+    </div>
+
+    <button type="submit">Se connecter</button>
+  </form>
+
+  <p>
+    <a href="/documentation">Voir la documentation de l’API</a>
+  </p>
+
+</body>
+</html>

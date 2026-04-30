@@ -1,40 +1,34 @@
 const express = require("express");
 const app = express();
 
-//Routes
-const catwayRoutes = require("./routes/catwayRoutes");
-const userRoutes = require("./routes/userRoutes");
-const reservationRoutes = require("./routes/reservationRoutes");
-
-const authRoutes = require("./routes/authRoutes");
+const path = require("path");
 
 // middlewares globaux
 app.use(express.json());
+app.use(express.urlencoded({ extended: true })); 
 
+// EJS
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname, "public")));
 
-//routes test
-app.get('/', (req, res) => {
-    res.send('Hello World from Express !')
-});
+// Routes
+const viewRoutes = require("./routes/viewRoutes");
+app.use("/", viewRoutes);
 
-app.get('/about', (req, res) => {
-    res.type('text/plain')
-    res.send('Je suis une application express basique')
-});
+const catwayRoutes = require("./routes/catwayRoutes");
+const userRoutes = require("./routes/userRoutes");
+const reservationRoutes = require("./routes/reservationRoutes");
+const authRoutes = require("./routes/authRoutes");
 
-// routes API
 app.use("/catways", catwayRoutes);
 app.use("/users", userRoutes);
 app.use("/reservations", reservationRoutes);
-
-//route pour auth
 app.use("/auth", authRoutes);
-
-
 
 // 404
 app.use((req, res) => {
-    res.status(404).send('404 page not found');
+  res.status(404).send("404 page not found");
 });
 
 module.exports = app;
