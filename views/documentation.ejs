@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Documentation API</title>
+</head>
+<body>
+
+  <h1>Documentation de l’API Capitainerie</h1>
+
+  <a href="/dashboard">Retour dashboard</a>
+
+  <hr>
+
+  <h2>1. Vue d’ensemble</h2>
+
+  <p>
+    Cette API permet de gérer une capitainerie :
+  </p>
+
+  <ul>
+    <li>Gestion des catways (places de port)</li>
+    <li>Gestion des réservations</li>
+    <li>Gestion des utilisateurs</li>
+  </ul>
+
+  <p>
+    L’API suit une architecture REST et utilise MongoDB pour le stockage des données.
+  </p>
+
+  <p>
+    Certaines routes sont sécurisées et nécessitent un token JWT.
+  </p>
+
+  <hr>
+
+  <h2>2. Tutoriel</h2>
+
+  <h3>Étape 1 : Se connecter</h3>
+
+  <p>
+    Utiliser la route :
+  </p>
+
+  <pre>POST /auth/login</pre>
+
+  <p>
+    Fournir un email et un mot de passe pour obtenir un token.
+  </p>
+
+  <h3>Étape 2 : Utiliser les routes protégées</h3>
+
+  <p>
+    Ajouter le token dans le header :
+  </p>
+
+  <pre>Authorization: Bearer &lt;token&gt;</pre>
+
+  <h3>Étape 3 : Créer un catway</h3>
+
+  <pre>POST /catways</pre>
+
+  <p>
+    Fournir :
+  </p>
+
+  <ul>
+    <li>catwayNumber</li>
+    <li>type (long / short)</li>
+    <li>catwayState</li>
+  </ul>
+
+  <h3>Étape 4 : Créer une réservation</h3>
+
+  <pre>POST /catways/:id/reservations</pre>
+
+  <p>
+    Fournir :
+  </p>
+
+  <ul>
+    <li>clientName</li>
+    <li>boatName</li>
+    <li>checkIn</li>
+    <li>checkOut</li>
+  </ul>
+
+  <hr>
+
+  <h2>3. Exemples</h2>
+
+  <h3>Créer un catway</h3>
+
+  <pre>
+POST /catways
+{
+  "catwayNumber": 50,
+  "type": "long",
+  "catwayState": "Disponible"
+}
+  </pre>
+
+  <h3>Créer une réservation</h3>
+
+  <pre>
+POST /catways/50/reservations
+{
+  "clientName": "Jean Dupont",
+  "boatName": "Sea Breeze",
+  "checkIn": "2030-06-01",
+  "checkOut": "2030-06-10"
+}
+  </pre>
+
+  <h3>Supprimer un catway</h3>
+
+  <pre>DELETE /catways/50</pre>
+
+  <hr>
+
+  <h2>4. Glossaire</h2>
+
+  <ul>
+    <li><strong>Catway</strong> : place de port pour un bateau</li>
+    <li><strong>Réservation</strong> : période pendant laquelle un catway est occupé</li>
+    <li><strong>JWT</strong> : token d’authentification utilisé pour sécuriser l’API</li>
+    <li><strong>Endpoint</strong> : URL d’accès à une fonctionnalité de l’API</li>
+    <li><strong>REST</strong> : architecture standard pour les API web</li>
+  </ul>
+
+</body>
+</html>
