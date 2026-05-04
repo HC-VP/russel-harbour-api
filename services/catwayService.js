@@ -18,10 +18,31 @@ const getCatwayById = async (id) => {
   return await Catway.findOne({ catwayNumber: toNumber(id) });
 };
 
+
+/**
+ * Crée un nouveau catway
+ *
+ * @param {Object} data - Données du catway
+ * @param {number|string} data.catwayNumber - Numéro du catway
+ * @param {string} data.type - Type du catway ("long" ou "short")
+ * @param {string} data.catwayState - État du catway
+ *
+ * @returns {Promise<Object>} Catway créé
+ *
+ * @throws {Error} Si un champ est manquant
+ * @throws {Error} Si le catway existe déjà
+ */
+
+
+
+
+
+
+
 const createCatway = async (data) => {
   const { catwayNumber, type, catwayState } = data;
 
-  if (!catwayNumber || !type || !catwayState) {
+  if (!catwayNumber || !type || !catwayState || catwayState.trim() === "") {
     throw new Error("Tous les champs sont obligatoires.");
   }
 
@@ -34,8 +55,9 @@ const createCatway = async (data) => {
   }
 
   return await Catway.create({
-    ...data,
     catwayNumber: catwayNum,
+    type,
+    catwayState,
   });
 };
 
@@ -67,6 +89,17 @@ const updateCatway = async (id, data) => {
   );
 };
 
+/**
+ * Met à jour l'état d'un catway
+ *
+ * @param {number|string} id - Numéro du catway
+ * @param {string} state - Nouvel état
+ *
+ * @returns {Promise<Object>} Catway mis à jour
+ *
+ * @throws {Error} Si le catway n'existe pas
+ */
+
 const patchCatwayState = async (id, catwayState) => {
   const catwayNum = toNumber(id);
 
@@ -76,10 +109,8 @@ const patchCatwayState = async (id, catwayState) => {
     throw new Error("Catway introuvable");
   }
 
-  const allowedStates = ["available", "occupied", "maintenance"];
-
-  if (!allowedStates.includes(catwayState)) {
-    throw new Error("État de catway invalide");
+  if (!catwayState || catwayState.trim() === "") {
+    throw new Error("L'état du catway est obligatoire.");
   }
 
   return await Catway.findOneAndUpdate(
