@@ -27,13 +27,13 @@ describe("Capitainerie API - 9 fonctionnalités", function () {
         user = new User({
             name: "Admin Test",
             email: "admin@test.com",
-            password: "password123",
+            password: "test1234",
         });
 
         await user.save();
     } else {
         user.name = "Admin Test";
-        user.password = "password123";
+        user.password = "test1234";
         await user.save();
     }
 
@@ -41,7 +41,7 @@ describe("Capitainerie API - 9 fonctionnalités", function () {
       .post("/auth/login")
       .send({
         email: "admin@test.com",
-        password: "password123",
+        password: "test1234",
       });
 
     expect(res.status).to.equal(200);
