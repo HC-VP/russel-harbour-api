@@ -142,6 +142,12 @@ Depuis le tableau de bord, il est ensuite possible de créer d'autres utilisateu
 - EJS pour le frontend
 - JSDoc pour la documentation
 
+## Déploiement
+
+Le projet est également déployé en ligne via Railway :
+
+https://ton-url-railway.up.railway.app
+
 Note :
 Le frontend EJS appelle directement les services pour simplifier l’architecture.
 La sécurisation complète est assurée au niveau de l’API via JWT.
