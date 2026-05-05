@@ -3,6 +3,13 @@ const app = express();
 
 const path = require("path");
 
+const swaggerUi = require("swagger-ui-express");
+const specs = require(".config/swagger");
+
+
+// Swagger
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
+
 // middlewares globaux
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 
