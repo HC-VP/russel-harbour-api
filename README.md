@@ -49,14 +49,14 @@ npm start
 
 Interface réalisée avec EJS :
 
-Page d’accueil avec formulaire de connexion
-Dashboard complet avec formulaires : utilisateurs, catways et réservations
-Pages disponibles :
-- liste des catways
-- liste des réservations
-- détail d’un catway
-- détail d’une réservation
-- documentation API
+-Page d’accueil avec formulaire de connexion
+-Dashboard complet avec formulaires : utilisateurs, catways et réservations
+-Pages disponibles :
+    - liste des catways
+    - liste des réservations
+    - détail d’un catway
+    - détail d’une réservation
+    - documentation API
 
 ## Documentation API (EJS)
 
@@ -65,20 +65,23 @@ Accessible via /documentation
 ## Documentation JSDoc
 
 - générer la doc : npm run docs
-- oouvrir docs/index.html
+- ouvrir docs/index.html
 
 ## Installation du projet : 
 
 ```bash
-- git clone https://github.com/HC-VP/russel-harbour-api
-- cd russel-harbour-api
-- npm install
+git clone https://github.com/HC-VP/russel-harbour-api
+cd russel-harbour-api
+npm install
 ```
 
-créer un fichier .env : 
+Créer un fichier `.env` :
+
+```env
 PORT=3001
 MONGO_URI=your_mongodb_uri
 JWT_SECRET=your_secret
+```
 
 ## Lancer le projet :
 
@@ -89,23 +92,23 @@ Mode production (avec tests)
 
 ## Architecture
 
-controllers/  
-services/    
-models/       
-routes/       
-views/        
-tests/
-docs/
+- controllers/ → gestion HTTP
+- services/ → logique métier
+- models/
+- routes/
+- views/ → frontend EJS
+- tests/
+- docs/
 
 
-## choix techniques
+## Choix techniques
 
-Express.js,
-MongoDB / Mongoose,
-JWT pour la sécurité,
-Mocha / Supertest pour les tests,
-EJS pour le frontend,
-JSDoc pour la documentation
+- Express.js
+- MongoDB / Mongoose
+- JWT pour la sécurité
+- Mocha / Supertest pour les tests
+- EJS pour le frontend
+- JSDoc pour la documentation
 
 Note :
 Le frontend EJS appelle directement les services pour simplifier l’architecture.
