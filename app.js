@@ -4,7 +4,7 @@ const app = express();
 const path = require("path");
 
 const swaggerUi = require("swagger-ui-express");
-const specs = require(".config/swagger");
+const specs = require("./config/swagger");
 
 
 // Swagger
