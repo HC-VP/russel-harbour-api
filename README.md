@@ -39,7 +39,7 @@ API REST sécurisée, tests automatisés, frontend EJS et documentation complèt
 ## Tests automatisés
 
 - 9 fonctionnalités testées avec **Mocha + Supertest**
-- Tests exécutés automatiquement au lancement :
+- Les tests couvrent les principales routes de l’API (catways et réservations) et s’exécutent automatiquement au lancement de l’application.
 
 ```bash
 npm start
