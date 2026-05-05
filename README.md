@@ -95,12 +95,14 @@ JWT_SECRET=your_secret
 
 ## Lancer le projet :
 
-Mode développement : 
+Mode développement => Lance le serveur avec rechargement automatique (nodemon) :
  - npm run dev
 
- 
-Mode production (avec tests)
- -npm start
+
+Mode standard (avec tests auto) :
+    -npm start
+
+
 
 ##Admin User :
 
