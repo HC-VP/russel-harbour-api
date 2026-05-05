@@ -29,22 +29,21 @@ API REST sécurisée, tests automatisés, frontend EJS et documentation complèt
 - Supprimer un utilisateur
 
 
-## 🔐 Sécurité
+## Sécurité
 
 - Authentification via JWT
 - Routes sensibles protégées (création / modification / suppression)
 - Middleware de vérification du token
 
 
-## 🧪 Tests automatisés
+## Tests automatisés
 
 - 9 fonctionnalités testées avec **Mocha + Supertest**
 - Tests exécutés automatiquement au lancement :
 
 ```bash
 npm start
-
-
+```
 
 ## Frontend (EJS)
 
@@ -70,9 +69,11 @@ Accessible via /documentation
 
 ## Installation du projet : 
 
+```bash
 - git clone https://github.com/HC-VP/russel-harbour-api
 - cd russel-API
 - npm install
+```
 
 créer un fichier .env : 
 PORT=3001
