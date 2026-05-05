@@ -50,7 +50,9 @@ npm start
 Interface réalisée avec EJS :
 
 -Page d’accueil avec formulaire de connexion
+
 -Dashboard complet avec formulaires : utilisateurs, catways et réservations
+
 -Pages disponibles :
     - liste des catways
     - liste des réservations
@@ -61,6 +63,14 @@ Interface réalisée avec EJS :
 ## Documentation API (EJS)
 
 Accessible via /documentation
+
+## Documentation API (Swagger)
+
+Une documentation interactive de l’API est disponible :
+
+http://localhost:3001/api-docs
+
+Elle permet de tester directement les routes avec authentification JWT.
 
 ## Documentation JSDoc
 
@@ -89,6 +99,24 @@ Mode développement :
  - npm run dev
 Mode production (avec tests)
  -npm start
+
+##Admin User :
+
+Un premier utilisateur administrateur doit être créé avec le script seedAdmin.js.
+
+```bash
+node seedAdmin.js
+```
+
+Cet utilisateur permet de se connecter à l'application et d'accéder au tableau de bord.
+
+```env
+Email : admin@test.com
+Mot de passe : test1234
+```
+Le mot de passe est automatiquement hashé avec bcrypt avant d’être enregistré en base.
+
+Depuis le tableau de bord, il est ensuite possible de créer d'autres utilisateurs via le formulaire prévu à cet effet.
 
 ## Architecture
 
