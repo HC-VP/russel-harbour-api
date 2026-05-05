@@ -71,7 +71,7 @@ Accessible via /documentation
 
 ```bash
 - git clone https://github.com/HC-VP/russel-harbour-api
-- cd russel-API
+- cd russel-harbour-api
 - npm install
 ```
 
@@ -89,22 +89,22 @@ Mode production (avec tests)
 
 ## Architecture
 
-controllers/  ==> gestion HTTP
-services/     ==> logique métier
+controllers/  
+services/    
 models/       
-routes/       ==> endpoints API + routes EJS
-views/        ==> frontend EJS
+routes/       
+views/        
 tests/
 docs/
 
 
 ## choix techniques
 
-Express.js
-MongoDB / Mongoose
-JWT pour la sécurité
-Mocha / Supertest pour les tests
-EJS pour le frontend
+Express.js,
+MongoDB / Mongoose,
+JWT pour la sécurité,
+Mocha / Supertest pour les tests,
+EJS pour le frontend,
 JSDoc pour la documentation
 
 Note :
