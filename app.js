@@ -6,23 +6,19 @@ const path = require("path");
 const swaggerUi = require("swagger-ui-express");
 const specs = require("./config/swagger");
 
+// Middlewares globaux
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Swagger
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
-
-// middlewares globaux
-app.use(express.json());
-app.use(express.urlencoded({ extended: true })); 
 
 // EJS
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 
-// Routes
-const viewRoutes = require("./routes/viewRoutes");
-app.use("/", viewRoutes);
-
+// Routes API
 const catwayRoutes = require("./routes/catwayRoutes");
 const userRoutes = require("./routes/userRoutes");
 const reservationRoutes = require("./routes/reservationRoutes");
@@ -32,6 +28,10 @@ app.use("/catways", catwayRoutes);
 app.use("/users", userRoutes);
 app.use("/reservations", reservationRoutes);
 app.use("/auth", authRoutes);
+
+// Routes EJS à placer après les routes API
+const viewRoutes = require("./routes/viewRoutes");
+app.use("/", viewRoutes);
 
 // 404
 app.use((req, res) => {

@@ -3,7 +3,7 @@ const catwayService = require("../services/catwayService");
 const getAllCatways = async (req, res) => {
   try {
     const catways = await catwayService.getAllCatways();
-    res.json(catways);
+    res.status(200).json(catways);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

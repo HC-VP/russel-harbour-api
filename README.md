@@ -97,6 +97,8 @@ JWT_SECRET=your_secret
 
 Mode développement : 
  - npm run dev
+
+ 
 Mode production (avec tests)
  -npm start
 

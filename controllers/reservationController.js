@@ -14,10 +14,7 @@ const getReservationsByCatway = async (req, res) => {
     const reservations =
       await reservationService.getReservationsByCatway(Number(req.params.id));
 
-    res.json(reservations);
-    if (!reservations.length) {
-        return res.status(404).json({ message: "No reservations found" });
-        }
+    res.status(200).json(reservations);    
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
